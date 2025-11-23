@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZERIPLOIT OFFICIAL HUB v5</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Segoe UI',sans-serif;background:#000;min-height:100vh;overflow-x:hidden;color:#fff}
+        .hero{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:20px;position:relative;overflow:hidden;background:radial-gradient(ellipse at center,#1a0f2e 0%,#000 70%)}
+        .jupiter-container{position:absolute;width:420px;height:420px;top:50%;left:50%;transform:translate(-50%,-50%);z-index:1}
+        .jupiter{width:100%;height:100%;border-radius:50%;background:linear-gradient(135deg,#ff0055 0%,#ff3377 15%,#cc0044 30%,#ff0055 45%,#ff6699 60%,#ff0055 75%,#cc0044 90%);box-shadow:0 0 120px rgba(255,0,85,0.7),inset -40px -40px 80px rgba(0,0,0,0.6),inset 30px 30px 50px rgba(255,255,255,0.15);animation:jupiterRotate 50s linear infinite;position:relative}
+        .jupiter::before{content:'';position:absolute;width:100%;height:35%;top:38%;left:0;background:linear-gradient(90deg,transparent 0%,rgba(200,0,70,0.5) 20%,rgba(200,0,70,0.7) 50%,rgba(200,0,70,0.5) 80%,transparent 100%);border-radius:50%}
+        .great-red-spot{position:absolute;width:90px;height:60px;background:radial-gradient(ellipse,#ff3377 0%,#990033 70%);border-radius:50%;top:42%;left:28%;box-shadow:inset -8px -8px 15px rgba(0,0,0,0.5);animation:spotPulse 5s ease-in-out infinite}
+        @keyframes jupiterRotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+        @keyframes spotPulse{0%,100%{opacity:0.9;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
+        .orbit{position:absolute;border:2px solid rgba(255,0,85,0.15);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%)}
+        .orbit-1{width:580px;height:580px}.orbit-2{width:740px;height:740px}
+        .moon{position:absolute;width:32px;height:32px;background:radial-gradient(circle at 30% 30%,#fff,#ccc);border-radius:50%;box-shadow:0 0 25px rgba(255,0,85,0.6);top:50%;left:50%}
+        .moon-1{animation:orbit1 14s linear infinite}
+        .moon-2{width:28px;height:28px;background:radial-gradient(circle at 30% 30%,#ff99cc,#ff0066);animation:orbit2 22s linear infinite}
+        .moon-3{width:24px;height:24px;background:radial-gradient(circle at 30% 30%,#ff66aa,#cc0055);animation:orbit1 18s linear infinite reverse}
+        .moon-4{width:26px;height:26px;background:radial-gradient(circle at 30% 30%,#ff3399,#aa0033);animation:orbit2 16s linear infinite reverse}
+        @keyframes orbit1{from{transform:translate(-50%,-50%) rotate(0deg) translateX(290px) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(360deg) translateX(290px) rotate(-360deg)}}
+        @keyframes orbit2{from{transform:translate(-50%,-50%) rotate(0deg) translateX(370px) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(360deg) translateX(370px) rotate(-360deg)}}
+        .content-overlay{position:relative;z-index:10}
+        .hero h1{font-size:4rem;margin-bottom:20px;text-shadow:0 0 30px #ff0055,0 0 60px #ff0055;color:#ff6699;animation:fadeInDown 1.2s ease}
+        .hero p{font-size:1.4rem;max-width:700px;text-shadow:0 0 15px #ff0055;color:#ff3377;margin-bottom:20px;animation:fadeInUp 1.2s ease}
+        .owner-tag{font-size:1.2rem;color:#ff0055;background:rgba(255,0,85,0.2);border:2px solid #ff0055;padding:10px 25px;border-radius:30px;display:inline-block;margin:20px 0;animation:fadeInUp 1.5s ease}
+        @keyframes fadeInDown{from{opacity:0;transform:translateY(-40px)}to{opacity:1;transform:translateY(0)}}
+        @keyframes fadeInUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+
+        /* Tabs & Sections */
+        .tabs{display:flex;justify-content:center;flex-wrap:wrap;gap:15px;margin:30px 0}
+        .tab-btn{background:rgba(255,0,85,0.3);border:2px solid #ff0055;color:#ff6699;padding:12px 25px;border-radius:12px;cursor:pointer;transition:0.4s;font-weight:bold}
+        .tab-btn:hover{background:#ff0055;color:#000;transform:scale(1.05)}
+        .tab-btn.active{background:#ff0055;color:#000;box-shadow:0 0 30px #ff0055}
+        .tab-content{display:none;padding:40px 20px;background:linear-gradient(180deg,#000 0%,#1a0f2e 50%,#000 100%)}
+        .tab-content.active{display:block}
+
+        /* TikTok Downloader */
+        .download-container{max-width:900px;margin:auto;background:rgba(26,15,46,0.9);padding:40px;border-radius:20px;border:2px solid #ff0055;box-shadow:0 0 50px rgba(255,0,85,0.4)}
+        #video-link{width:100%;padding:18px;background:#000;border:2px solid #ff0055;border-radius:12px;color:#ff6699;font-size:1.2em}
+        .download-btn{background:#ff0055;color:#fff;padding:18px 40px;border:none;border-radius:12px;cursor:pointer;font-weight:bold;margin-top:20px;transition:0.3s}
+        .download-btn:hover{background:#ff3377;transform:scale(1.05)}
+
+        /* Lua Tools */
+        .minify-container{max-width:1000px;margin:auto;background:rgba(26,15,46,0.9);padding:40px;border-radius:20px;border:2px solid #ff0055;box-shadow:0 0 50px rgba(255,0,85,0.4)}
+        .minify-textarea{width:100%;height:250px;background:#000;color:#0f0;border:2px solid #ff0055;border-radius:12px;padding:15px;font-family:'Courier New',monospace;font-size:14px}
+        .minify-btn{background:#ff0055;color:#fff;padding:15px 30px;border:none;border-radius:12px;margin:10px;cursor:pointer;font-weight:bold}
+
+        /* Executors */
+        table{width:100%;max-width:900px;margin:40px auto;border-collapse:collapse}
+        th,td{border:2px solid #ff0055;padding:15px;text-align:center}
+        th{background:#220011;color:#ff6699}
+        .online{color:#00ff00;font-weight:bold}
+        a{color:#00ff00;text-decoration:none;font-weight:bold}
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <div class="jupiter-container">
+        <div class="jupiter"><div class="great-red-spot"></div></div>
+        <div class="orbit orbit-1"></div>
+        <div class="orbit orbit-2"></div>
+        <div class="moon moon-1"></div>
+        <div class="moon moon-2"></div>
+        <div class="moon moon-3"></div>
+        <div class="moon moon-4"></div>
+    </div>
+    <div class="content-overlay">
+        <h1>ZERIPLOIT OFFICIAL</h1>
+        <p>Private Hub • Undetected Scripts • 2025 Edition</p>
+        <div class="owner-tag">Owner: zeriploitt</div>
+    </div>
+</div>
+
+<div class="tabs">
+    <button class="tab-btn active" onclick="openTab('home')">HOME</button>
+    <button class="tab-btn" onclick="openTab('tiktok')">TIKTOK DOWNLOADER</button>
+    <button class="tab-btn" onclick="openTab('lua')">LUA TOOLS</button>
+    <button class="tab-btn" onclick="openTab('exec')">EXECUTORS</button>
+</div>
+
+<div id="home" class="tab-content active">
+    <h1 style="text-align:center;color:#ff6699">Selamat Datang, Tuan</h1>
+    <p style="text-align:center;font-size:1.4em;color:#ff3377">Semua yang lo butuhin ada di sini — private, undetected, dan selalu updated.</p>
+</div>
+
+<div id="tiktok" class="tab-content">
+    <div class="download-container">
+        <h1>TikTok Downloader No Watermark</h1>
+        <input type="text" id="video-link" placeholder="Paste link TikTok di sini...">
+        <button class="download-btn" onclick="downloadTikTok()">DOWNLOAD HD</button>
+        <div id="js-result"></div>
+    </div>
+</div>
+
+<div id="lua" class="tab-content">
+    <div class="minify-container">
+        <h1>Lua Minifier • Beautifier • Watermark</h1>
+        <textarea id="luainput" class="minify-textarea" placeholder="Paste script Lua di sini..."></textarea><br>
+        <button class="minify-btn" onclick="minifyLua()">MINIFY</button>
+        <button class="minify-btn" onclick="beautifyLua()">BEAUTIFY</button>
+        <button class="minify-btn" onclick="addWatermark()">+ WATERMARK ZERIPLOIT</button>
+        <textarea id="luaoutput" class="minify-textarea" readonly placeholder="Hasil akan muncul di sini..."></textarea><br>
+        <button class="minify-btn" onclick="copyLua()">COPY HASIL</button>
+    </div>
+</div>
+
+<div id="exec" class="tab-content">
+    <h1 style="text-align:center;color:#ff6699">Download Executor Terbaik 2025</h1>
+    <table>
+        <tr><th>Platform</th><th>Nama</th><th>Status</th><th>Link</th></tr>
+        <tr><td>Android</td><td>Delta Executor</td><td class="online">Online</td><td><a href="https://delta-executor.com" target="_blank">Download</a></td></tr>
+        <tr><td>Android</td><td>Xeno</td><td class="online">Online</td><td><a href="https://xeno-executor.com" target="_blank">Download</a></td></tr>
+        <tr><td>Android</td><td>Arceus X Neo</td><td class="online">Online</td><td><a href="https://arceusx.net" target="_blank">Download</a></td></tr>
+        <tr><td>Windows</td><td>Fluxus</td><td class="online">Online</td><td><a href="https://fluxus.to" target="_blank">Download</a></td></tr>
+        <tr><td>Windows</td><td>Solara</td><td class="online">Online</td><td><a href="https://solaraexecutor.com" target="_blank">Download</a></td></tr>
+    </table>
+</div>
+
+<script>
+function openTab(tabName) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(tabName).classList.add('active');
+    event.target.classList.add('active');
+}
+function downloadTikTok() {
+    let url = document.getElementById("video-link").value.trim();
+    if (!url.includes("tiktok.com")) return alert("Link TikTok tidak valid!");
+    let id = url.split("/").pop().split("?")[0];
+    document.getElementById("js-result").innerHTML = `<br><a href="https://ttsave.app/download?video=\( {id}" target="_blank"><button class="download-btn">DOWNLOAD VIDEO HD (NO WATERMARK)</button></a><br><br><video src="https://tikwm.com/video/media/play/ \){id}.mp4" controls style="max-width:100%;border-radius:15px;border:3px solid #ff0055"></video>`;
+}
+function minifyLua() { document.getElementById("luaoutput").value = document.getElementById("luainput").value.replace(/\s+/g," ").trim(); }
+function beautifyLua() { let c = document.getElementById("luainput").value; document.getElementById("luaoutput").value = c.replace(/;/g,";\n").replace(/}/g,"}\n").replace(/{/g,"{\n"); }
+function addWatermark() { let c = document.getElementById("luainput").value; document.getElementById("luaoutput").value = `-- ZERIPLOIT OFFICIAL SCRIPT
+-- Owner: zeriploitt
+-- Private Hub: https://zeriploitt.github.io/omega-hub/
+-- 2025 | Undetected & Powerful
+
+` + c; }
+function copyLua() { let t = document.getElementById("luaoutput"); t.select(); document.execCommand("copy"); alert("Copied!"); }
+</script>
+</body>
+</html>
